@@ -17,7 +17,6 @@ function initializePlayedGamesData(){
     return data; 
 }
 
-
 function initializeUpcomingGamesData(){
     let data = []; 
     let csvFilePath = "result_upcoming.csv";
@@ -28,14 +27,18 @@ function initializeUpcomingGamesData(){
     })
     return data; 
 }
-
-    
+   
 // this middlware enables the express router to handle post requests with a json body
 
 function Get_list_of_matches_by_tournament(name){
     let game_type = t=>t.tournament == name;
+    // The filter() method creates a new array with all elements 
+    // that pass the test implemented by the provided function.
+    // callbackFn
     let playedGamesByTournament = playedGamesData[0].filter(game_type);
     let upcomingGamesByTournament = upcomingGamesData[0].filter(game_type);
+    // The concat() method is used to merge two or more arrays. 
+    // This method does not change the existing arrays, but instead returns a new array
     let matchByTournament = playedGamesByTournament.concat(upcomingGamesByTournament);
     return matchByTournament;
 }
@@ -53,25 +56,23 @@ function Get_list_of_matches_by_tournament_by_status(name, status){
     return matchByStatus;
 }
    
-
-//==========================================================================
-// Create a simple GET request that returns a list of matches by tournament.
-router.get("/tournament/:name", (req, res, next)=>{
+// [GET] request 
+// Returns list of matches by tournament.
+router.get("/tournament/:name", (req, res)=>{
     const tournamentName = req.params.name;
     res.json(Get_list_of_matches_by_tournament(tournamentName));
     console.log("Get list of matches by tournament: " + tournamentName);
    });
 
-
-//==========================================================================
-// Create a simple GET request that returns a list of matches by tournament filtered by status.
-router.get("/tournament/:name/:status", (req, res, next)=>{
+// [GET] request 
+// Returns list of matches by tournament filtered by status.
+router.get("/tournament/:name/:status", (req, res)=>{
     const tournamentName = req.params.name;
     const matchStatus = req.params.status;
     res.json(Get_list_of_matches_by_tournament_by_status(tournamentName, matchStatus));
-    console.log("Get list of matches by tournament filtered by status: " + tournamentName + ", " + matchStatus);
+    console.log("Get list of matches by tournament filtered by status: "
+                + tournamentName + ", " + matchStatus);
 
    });
-//==========================================================================
 
 module.exports = router;

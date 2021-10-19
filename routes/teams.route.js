@@ -17,7 +17,6 @@ function initializePlayedGamesData(){
     return data; 
 }
 
-
 function initializeUpcomingGamesData(){
     let data = []; 
     let csvFilePath = "result_upcoming.csv";
@@ -28,7 +27,6 @@ function initializeUpcomingGamesData(){
     })
     return data; 
 }
-
 
 // this middlware enables the express router to handle post requests with a json body
 
@@ -59,22 +57,22 @@ function Get_list_of_matches_by_team_by_status(name, status){
 }
 router.use
 
-//==========================================================================
-// Create a simple GET request that returns a list of matches by team.
-router.get("/team/:name", (req, res, next)=>{
+// [GET] request 
+// Returns a list of matches by team.
+router.get("/team/:name", (req, res)=>{
     const teamName = req.params.name;
     res.json(Get_list_of_matches_by_team(teamName));
     console.log("Get list of matches by team: " + teamName);
    });
 
-
-//==========================================================================
-// Create a GET request that returns a list of matches by team filtered by status.
-router.get("/team/:name/:status", (req, res, next)=>{
+// [GET] request 
+// Returns a list of matches by team filtered by status.
+router.get("/team/:name/:status", (req, res)=>{
     const teamName = req.params.name;
     const matchStatus = req.params.status;
     res.json(Get_list_of_matches_by_team_by_status(teamName, matchStatus));
-    console.log("Get list of matches by team filtered by status: " + teamName +", " + matchStatus);
+    console.log("Get list of matches by team filtered by status: " 
+                + teamName +", " + matchStatus);
 });
 
 module.exports = router;
