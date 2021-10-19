@@ -21,7 +21,7 @@ Read more about [RESTful API](https://searchapparchitecture.techtarget.com/defin
 4. Get list of matches by tournament filtered by status.
 
 ### Usage
-1. Download this project to your computer
+1. Download this project to your computer using cmd command
 ```sh
 git clone https://github.com/orti10/football-game-service.git
 cd football-game-service
