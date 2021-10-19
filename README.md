@@ -24,7 +24,7 @@ Read more about [RESTful API](https://searchapparchitecture.techtarget.com/defin
 1. Download this project to your computer using cmd command
 ```sh
 git clone https://github.com/orti10/football-game-service.git
-cd football-game-service
+cd football-game-service-master
 npm init
 ```
 
